@@ -1,16 +1,21 @@
-/* Base e resets de layout */
+/* Resets de fundo e texto principal */
 body {
-    background-color: #090d16;
-    color: #f3f4f6;
+    background-color: #090d16 !important;
+    color: #f3f4f6 !important;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
 }
 
-/* Força fundo escuro e texto claro em todos os campos de formulário nativos */
+/* Força estilo escuro em inputs, selects, textareas e options nativos */
 input, select, textarea {
     background-color: #090d16 !important;
     color: #f3f4f6 !important;
     border-color: #1f2937 !important;
+}
+
+select option {
+    background-color: #111827 !important;
+    color: #f3f4f6 !important;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -18,36 +23,36 @@ input:focus, select:focus, textarea:focus {
     border-color: #22c55e !important;
 }
 
-/* Glassmorphism effects */
+/* Glassmorphism */
 .glass-card {
-    background: rgba(17, 24, 39, 0.75);
+    background: rgba(17, 24, 39, 0.75) !important;
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .glass-card-hover {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .glass-card-hover:hover {
-    border-color: rgba(74, 222, 128, 0.3);
+    border-color: rgba(74, 222, 128, 0.3) !important;
     transform: translateY(-2px);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(34, 197, 94, 0.1);
 }
 
-/* Mapeamento direto das cores customizadas */
+/* Mapeamento de Classes Utilitárias de Cores Customizadas */
 .bg-dark-bg { background-color: #090d16 !important; }
 .bg-dark-card { background-color: #111827 !important; }
-.bg-dark-hover:hover { background-color: #1e293b !important; }
 .border-dark-border { border-color: #1f2937 !important; }
 
-/* Cores do Brand */
+/* Paleta Brand */
 .text-brand-400 { color: #4ade80 !important; }
 .bg-brand-500 { background-color: #22c55e !important; }
 .bg-brand-600 { background-color: #16a34a !important; }
 .bg-brand-500\/10 { background-color: rgba(34, 197, 94, 0.1) !important; }
 .bg-brand-500\/20 { background-color: rgba(34, 197, 94, 0.2) !important; }
 
-/* Cores de Acento */
+/* Paleta Accent */
 .text-accent-cyan { color: #06b6d4 !important; }
 .text-accent-purple { color: #a855f7 !important; }
 .text-accent-amber { color: #f59e0b !important; }
@@ -59,12 +64,26 @@ input:focus, select:focus, textarea:focus {
 .bg-accent-pink\/10 { background-color: rgba(236, 72, 153, 0.1) !important; }
 .bg-accent-pink\/20 { background-color: rgba(236, 72, 153, 0.2) !important; }
 
-/* Gradientes Visíveis para as Barras de Progresso */
-.from-accent-pink { --tw-gradient-from: #ec4899 var(--tw-gradient-from-position); --tw-gradient-to: rgb(236 72 153 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-from), var(--tw-gradient-to)); }
-.to-accent-cyan { --tw-gradient-to: #06b6d4 var(--tw-gradient-to-position); }
-.to-accent-purple { --tw-gradient-to: #a855f7 var(--tw-gradient-to-position); }
-.from-brand-500 { --tw-gradient-from: #22c55e var(--tw-gradient-from-position); --tw-gradient-to: rgb(34 197 94 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-from), var(--tw-gradient-to)); }
-.to-brand-400 { --tw-gradient-to: #4ade80 var(--tw-gradient-to-position); }
+/* Suporte aos Gradientes Tailwind para Elementos Gerados Via JS */
+.from-accent-pink {
+    --tw-gradient-from: #ec4899 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(236 72 153 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+.to-accent-cyan {
+    --tw-gradient-to: #06b6d4 var(--tw-gradient-to-position) !important;
+}
+.to-accent-purple {
+    --tw-gradient-to: #a855f7 var(--tw-gradient-to-position) !important;
+}
+.from-brand-500 {
+    --tw-gradient-from: #22c55e var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(34 197 94 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+.to-brand-400 {
+    --tw-gradient-to: #4ade80 var(--tw-gradient-to-position) !important;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -82,25 +101,25 @@ input:focus, select:focus, textarea:focus {
     background: #374151;
 }
 
-/* Animação Circular do Pomodoro */
+/* Pomodoro Circular Animation */
 .pomo-circle {
     transition: stroke-dashoffset 1s linear;
 }
 
-/* Indicador de Aba Ativa */
+/* Nav link active glow */
 .nav-item-active {
-    background: linear-gradient(90deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0) 100%);
-    border-left: 3px solid #22c55e;
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0) 100%) !important;
+    border-left: 3px solid #22c55e !important;
     color: #4ade80 !important;
 }
 
-/* Estilo do Checkbox Personalizado */
+/* Custom checkbox styles */
 .custom-checkbox:checked {
-    background-color: #22c55e;
-    border-color: #22c55e;
+    background-color: #22c55e !important;
+    border-color: #22c55e !important;
 }
 
-/* Ocultar barra de rolagem na navegação mobile */
+/* Ocultar scrollbar no menu mobile */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
