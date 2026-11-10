@@ -5,49 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindHub - Gestão Pessoal & Produtividade</title>
 
-    <!-- Tailwind Config Initialization (Injetado antes do script CDN do Tailwind) -->
+    <!-- 1. Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. Tailwind Config Initialization (Carregado logo após o CDN) -->
     <script>
-        tailwind = {
-            config: {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            sans: ['Plus Jakarta Sans', 'sans-serif'],
-                            mono: ['JetBrains Mono', 'monospace']
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            900: '#14532d',
                         },
-                        colors: {
-                            brand: {
-                                50: '#f0fdf4',
-                                100: '#dcfce7',
-                                400: '#4ade80',
-                                500: '#22c55e',
-                                600: '#16a34a',
-                                900: '#14532d',
-                            },
-                            dark: {
-                                bg: '#090d16',
-                                card: '#111827',
-                                border: '#1f2937',
-                                hover: '#1e293b'
-                            },
-                            accent: {
-                                cyan: '#06b6d4',
-                                purple: '#a855f7',
-                                amber: '#f59e0b',
-                                rose: '#f43f5e',
-                                pink: '#ec4899',
-                                emerald: '#10b981'
-                            }
+                        dark: {
+                            bg: '#090d16',
+                            card: '#111827',
+                            border: '#1f2937',
+                            hover: '#1e293b'
+                        },
+                        accent: {
+                            cyan: '#06b6d4',
+                            purple: '#a855f7',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            pink: '#ec4899',
+                            emerald: '#10b981'
                         }
                     }
                 }
             }
         };
     </script>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,10 +61,10 @@
     <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Estilos Customizados -->
+    <!-- Folha de Estilos Customizada (css/custom.css) -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
-<body class="h-full flex flex-col md:flex-row min-h-screen selection:bg-brand-500 selection:text-white">
+<body class="h-full flex flex-col md:flex-row min-h-screen bg-dark-bg text-gray-100 selection:bg-brand-500 selection:text-white">
 
     <!-- Desktop Sidebar -->
     <aside id="sidebar" class="hidden md:flex flex-col w-64 bg-dark-card border-r border-dark-border p-4 justify-between z-30 shrink-0">
