@@ -5,60 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindHub - Gestão Pessoal & Produtividade</title>
 
-<!-- Tailwind Config Initialization OTIMIZADO -->
-<script>
-  window.tailwind = {
-    config: {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          },
-          colors: {
-            'dark-card': '#1e293b',
-            'dark-border': '#334155',
-            'accent-pink': '#ec4899',
-            'accent-cyan': '#06b6d4',
-            'accent-purple': '#a855f7',
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              900: '#14532d',
-            },
-            dark: {
-              bg: '#090d16',
-              card: '#111827',
-              border: '#1f2937',
-              hover: '#1e293b'
+    <!-- Tailwind Config Initialization (Injetado antes do script CDN do Tailwind) -->
+    <script>
+        tailwind = {
+            config: {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Plus Jakarta Sans', 'sans-serif'],
+                            mono: ['JetBrains Mono', 'monospace']
+                        },
+                        colors: {
+                            brand: {
+                                50: '#f0fdf4',
+                                100: '#dcfce7',
+                                400: '#4ade80',
+                                500: '#22c55e',
+                                600: '#16a34a',
+                                900: '#14532d',
+                            },
+                            dark: {
+                                bg: '#090d16',
+                                card: '#111827',
+                                border: '#1f2937',
+                                hover: '#1e293b'
+                            },
+                            accent: {
+                                cyan: '#06b6d4',
+                                purple: '#a855f7',
+                                amber: '#f59e0b',
+                                rose: '#f43f5e',
+                                pink: '#ec4899',
+                                emerald: '#10b981'
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      },
-      // SAFELIST OBRIGATÓRIA: Força a injeção física das cores no navegador
-      safelist: [
-        'bg-brand-500/10', 'border-brand-500/30', 'text-brand-400', 'bg-brand-500/20', 'text-brand-300',
-        'bg-rose-500/10', 'border-rose-500/30', 'text-rose-400', 'bg-rose-500/20', 'text-rose-300',
-        'bg-amber-500/10', 'border-amber-500/30', 'text-amber-400', 'bg-amber-500/20', 'text-amber-300',
-        'bg-accent-pink/10', 'border-accent-pink/30', 'text-accent-pink', 'bg-accent-pink/20',
-        'bg-accent-cyan/10', 'border-accent-cyan/30', 'text-accent-cyan', 'bg-accent-cyan/20',
-        'bg-accent-purple/10', 'border-accent-purple/30', 'text-accent-purple', 'bg-accent-purple/20'
-      ]
-    }
-  }
-</script>
-
+        };
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- CSS Customizado do Projeto -->
-     <link rel="stylesheet" href="css/custom.css">
-    
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +63,7 @@
     <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Folha de Estilos Customizada (css/custom.css) -->
+    <!-- Estilos Customizados -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="h-full flex flex-col md:flex-row min-h-screen selection:bg-brand-500 selection:text-white">
@@ -152,27 +142,33 @@
     <!-- Main Shell -->
     <div class="flex-1 flex flex-col min-w-0 overflow-y-auto pb-24 md:pb-6">
         
-      <!-- Top Navigation Bar com brilho acrílico colorido -->
-<header class="sticky top-0 z-20 bg-dark-card/80 backdrop-blur-md border-b border-brand-500/20 px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-        <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-brand-400 text-lg transition-colors">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <h2 id="page-title" class="text-lg font-bold text-white flex items-center gap-2">
-            <!-- Trocado o cinza por gradiente ou cor de destaque -->
-            <i class="fa-solid fa-chart-pie text-brand-500 shadow-sm"></i>
-            <span class="bg-gradient-to-r from-white to-brand-400 bg-clip-text text-transparent">Dashboard</span>
-        </h2>
-    </div>
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-20 glass-card border-b border-dark-border px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white text-lg">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h2 id="page-title" class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-chart-pie text-brand-400"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
 
-    <!-- Header Quick Actions -->
-    <div class="flex items-center gap-2.5">
-        <button onclick="openModal('quick-add')" class="bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs px-4 py-2 rounded-lg shadow-lg shadow-brand-600/30 transition-all flex items-center gap-2">
-            <i class="fa-solid fa-plus"></i>
-            <span>Criar Novo</span>
-        </button>
-    </div>
-</header>
+            <!-- Header Quick Actions -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="openModal('quick-add')" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-lg shadow-brand-600/20">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden sm:inline">Criar Novo</span>
+                </button>
+
+                <div class="h-6 w-px bg-dark-border hidden sm:block"></div>
+
+                <div class="text-right hidden sm:block">
+                    <p id="header-date" class="text-xs font-semibold text-gray-300"></p>
+                    <p id="header-greeting" class="text-[10px] text-brand-400 font-bold"></p>
+                </div>
+            </div>
+        </header>
 
         <!-- Dynamic Main Views Container -->
         <main class="p-4 md:p-6 space-y-6 max-w-7xl mx-auto w-full">
