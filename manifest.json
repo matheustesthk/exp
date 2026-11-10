@@ -1,0 +1,20 @@
+{
+  "short_name": "MindHub",
+  "name": "MindHub - Gestão Pessoal",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#090d16",
+  "theme_color": "#22c55e",
+  "display": "standalone"
+}
