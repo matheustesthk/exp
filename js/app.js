@@ -20,10 +20,10 @@ function refreshUI() {
     updatePomoUI();
 }
 
-// Attach UI Refresh function globally
+// Vincula a função de atualização da UI ao objeto global window
 window.refreshUI = refreshUI;
 
-// Attach all HTML inline event handlers to window global object
+// Vincula todos os eventos inline do HTML ao objeto global window
 window.switchTab = switchTab;
 window.toggleMobileMenu = toggleMobileMenu;
 window.resetDataModal = resetState;
@@ -54,7 +54,7 @@ window.quickAddSavingsPrompt = quickAddSavingsPrompt;
 window.toggleWishConquered = toggleWishConquered;
 window.deleteWish = deleteWish;
 
-// Initialize application when DOM is fully loaded
+// Inicializa a aplicação ao carregar a página
 window.addEventListener('DOMContentLoaded', () => {
     refreshUI();
 });
