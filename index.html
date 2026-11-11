@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindHub - Gestão Pessoal & Produtividade</title>
 
-      <!-- 1. Tailwind CSS CDN -->
-    <script src="https://tailwindcss.com"></script>
+    <!-- 1. Tailwind CSS CDN carregado PRIMEIRO -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 2. Configuração das Cores -->
+    <!-- 2. Configuração do Tailwind (Sem objetos conflitantes na raiz de colors) -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -25,7 +25,7 @@
                             400: '#4ade80',
                             500: '#22c55e',
                             600: '#16a34a',
-                            900: '#14532d',
+                            900: '#14532d'
                         },
                         dark: {
                             bg: '#090d16',
@@ -43,10 +43,14 @@
                         }
                     }
                 }
-            }
-        }
+            },
+            safelist: [
+                {
+                    pattern: /(bg|text|border|from|to)-(brand|dark|accent)-(50|100|400|500|600|900|bg|card|border|hover|cyan|purple|amber|rose|pink|emerald)(\/(10|20|30|40|50))?/
+                }
+            ]
+        };
     </script>
-
 
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,11 +66,10 @@
     <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Folha de Estilos Customizada (css/custom.css) -->
+    <!-- Folha de Estilos Customizada (Única chamada e no final do <head>) -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
-
-<body class="h-full flex flex-col md:flex-row min-h-screen selection:bg-brand-500 selection:text-white">
+<body class="h-full flex flex-col md:flex-row min-h-screen bg-dark-bg text-gray-100 selection:bg-brand-500 selection:text-white">
 
     <!-- Desktop Sidebar -->
     <aside id="sidebar" class="hidden md:flex flex-col w-64 bg-dark-card border-r border-dark-border p-4 justify-between z-30 shrink-0">
@@ -142,7 +145,7 @@
     <!-- Main Shell -->
     <div class="flex-1 flex flex-col min-w-0 overflow-y-auto pb-24 md:pb-6">
         
-        <!-- Top Navigation Bar -->
+        <!-- Top Navigation Bar Restaurado -->
         <header class="sticky top-0 z-20 glass-card border-b border-dark-border px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white text-lg">
