@@ -54,7 +54,9 @@ export function renderWishlist() {
         const pct = w.targetAmount > 0 ? Math.min(100, Math.round((w.savedAmount / w.targetAmount) * 100)) : 0;
         const isConquered = w.conquered;
 
-        const prioClass = w.priority === 'Alta' ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' : (w.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
+        const prioClass = w.priority === 'Alta' 
+            ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' 
+            : (w.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
 
         const catIcons = {
             'Tecnologia': 'fa-laptop',
