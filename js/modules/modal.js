@@ -21,20 +21,20 @@ export function openModal(type) {
         body.innerHTML = `
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Título</label>
-                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
             <div class="grid grid-cols-2 gap-2">
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Prioridade</label>
-                    <select name="priority" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
-                        <option value="Alta">Alta</option>
-                        <option value="Média" selected>Média</option>
-                        <option value="Baixa">Baixa</option>
+                    <select name="priority" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
+                        <option value="Alta" class="bg-dark-card text-white">Alta</option>
+                        <option value="Média" selected class="bg-dark-card text-white">Média</option>
+                        <option value="Baixa" class="bg-dark-card text-white">Baixa</option>
                     </select>
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Categoria</label>
-                    <input type="text" name="category" value="Geral" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                    <input type="text" name="category" value="Geral" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
                 </div>
             </div>
         `;
@@ -43,24 +43,24 @@ export function openModal(type) {
         body.innerHTML = `
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Descrição</label>
-                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
             <div class="grid grid-cols-2 gap-2">
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Valor (R$)</label>
-                    <input type="number" step="0.01" name="amount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                    <input type="number" step="0.01" name="amount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Tipo</label>
-                    <select name="type" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
-                        <option value="expense">Despesa</option>
-                        <option value="income">Receita</option>
+                    <select name="type" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
+                        <option value="expense" class="bg-dark-card text-white">Despesa</option>
+                        <option value="income" class="bg-dark-card text-white">Receita</option>
                     </select>
                 </div>
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Categoria</label>
-                <input type="text" name="category" value="Outros" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="category" value="Outros" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
         `;
     } else if (type === 'habit') {
@@ -68,11 +68,11 @@ export function openModal(type) {
         body.innerHTML = `
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Nome do Hábito</label>
-                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Categoria</label>
-                <input type="text" name="category" value="Saúde" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="category" value="Saúde" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
         `;
     } else if (type === 'note') {
@@ -80,15 +80,15 @@ export function openModal(type) {
         body.innerHTML = `
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Título</label>
-                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="title" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Conteúdo</label>
-                <textarea name="content" rows="4" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1"></textarea>
+                <textarea name="content" rows="4" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500"></textarea>
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Tags (separadas por vírgula)</label>
-                <input type="text" name="tags" placeholder="trabalho, ideias" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="tags" placeholder="trabalho, ideias" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-brand-500">
             </div>
         `;
     } else if (type === 'wish') {
@@ -96,47 +96,47 @@ export function openModal(type) {
         body.innerHTML = `
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Nome do Item / Meta</label>
-                <input type="text" name="title" placeholder="ex: MacBook Pro, Viagem Japão" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="text" name="title" placeholder="ex: MacBook Pro, Viagem Japão" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
             </div>
             <div class="grid grid-cols-2 gap-2">
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Valor Total (R$)</label>
-                    <input type="number" step="0.01" name="targetAmount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                    <input type="number" step="0.01" name="targetAmount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Já Economizado (R$)</label>
-                    <input type="number" step="0.01" name="savedAmount" value="0" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                    <input type="number" step="0.01" name="savedAmount" value="0" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Categoria</label>
-                    <select name="category" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
-                        <option value="Tecnologia">Tecnologia</option>
-                        <option value="Viagens">Viagens</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Estudos">Estudos</option>
-                        <option value="Vestuário">Vestuário</option>
-                        <option value="Outros">Outros</option>
+                    <select name="category" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
+                        <option value="Tecnologia" class="bg-dark-card text-white">Tecnologia</option>
+                        <option value="Viagens" class="bg-dark-card text-white">Viagens</option>
+                        <option value="Lazer" class="bg-dark-card text-white">Lazer</option>
+                        <option value="Casa" class="bg-dark-card text-white">Casa</option>
+                        <option value="Estudos" class="bg-dark-card text-white">Estudos</option>
+                        <option value="Vestuário" class="bg-dark-card text-white">Vestuário</option>
+                        <option value="Outros" class="bg-dark-card text-white">Outros</option>
                     </select>
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 font-semibold">Prioridade</label>
-                    <select name="priority" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
-                        <option value="Alta">Alta</option>
-                        <option value="Média" selected>Média</option>
-                        <option value="Baixa">Baixa</option>
+                    <select name="priority" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
+                        <option value="Alta" class="bg-dark-card text-white">Alta</option>
+                        <option value="Média" selected class="bg-dark-card text-white">Média</option>
+                        <option value="Baixa" class="bg-dark-card text-white">Baixa</option>
                     </select>
                 </div>
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Link / URL do Produto (opcional)</label>
-                <input type="url" name="url" placeholder="https://..." class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="url" name="url" placeholder="https://..." class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
             </div>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Observações / Motivação</label>
-                <textarea name="notes" rows="2" placeholder="Por que deseja conquistar este item?" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1"></textarea>
+                <textarea name="notes" rows="2" placeholder="Por que deseja conquistar este item?" class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink"></textarea>
             </div>
         `;
     } else if (type === 'add-savings') {
@@ -147,7 +147,7 @@ export function openModal(type) {
             <p class="text-xs text-gray-400">Restante para alcançar a meta: <strong class="text-accent-pink">R$ ${remaining.toLocaleString('pt-BR')}</strong></p>
             <div>
                 <label class="text-xs text-gray-400 font-semibold">Valor a Adicionar (R$)</label>
-                <input type="number" step="0.01" name="addedAmount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1">
+                <input type="number" step="0.01" name="addedAmount" required class="w-full bg-dark-bg border border-dark-border rounded-lg p-2 text-xs text-white mt-1 focus:outline-none focus:border-accent-pink">
             </div>
         `;
     }

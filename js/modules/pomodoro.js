@@ -65,6 +65,21 @@ export function updatePomoUI() {
     const dashBtn = document.getElementById('dash-pomo-btn');
     if (dashBtn) dashBtn.textContent = btnText;
 
+    // Atualização do destaque visual dos botões de modo
+    const modes = ['focus', 'short', 'long'];
+    const activeMode = state.pomodoro.mode === 'focus' ? 'focus' : (state.pomodoro.mode === 'shortBreak' ? 'short' : 'long');
+    
+    modes.forEach(m => {
+        const btn = document.getElementById(`pomo-mode-${m}`);
+        if (btn) {
+            if (m === activeMode) {
+                btn.className = 'px-4 py-1.5 text-xs font-bold rounded-full bg-brand-600 text-white transition';
+            } else {
+                btn.className = 'px-4 py-1.5 text-xs font-bold rounded-full text-gray-400 hover:text-white transition';
+            }
+        }
+    });
+
     const total = state.pomodoro.mode === 'focus' ? 25 * 60 : (state.pomodoro.mode === 'shortBreak' ? 5 * 60 : 15 * 60);
     const offset = 691 - (state.pomodoro.timeLeft / total) * 691;
     const ring = document.getElementById('pomo-progress-ring');

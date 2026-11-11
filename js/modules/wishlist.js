@@ -9,7 +9,6 @@ export function renderWishlist() {
     const prioFilter = document.getElementById('wish-filter-priority')?.value || 'all';
     const statusFilter = document.getElementById('wish-filter-status')?.value || 'all';
 
-    // Metrics calculation
     const totalSaved = state.wishlist.reduce((acc, w) => acc + w.savedAmount, 0);
     const totalTarget = state.wishlist.reduce((acc, w) => acc + w.targetAmount, 0);
     const totalConquered = state.wishlist.filter(w => w.conquered).length;
@@ -27,7 +26,6 @@ export function renderWishlist() {
     const barEl = document.getElementById('wish-overall-bar');
     if (barEl) barEl.style.width = `${overallPct}%`;
 
-    // Filtering
     const filtered = state.wishlist.filter(w => {
         const matchesSearch = w.title.toLowerCase().includes(search) || (w.notes && w.notes.toLowerCase().includes(search));
         const matchesCat = catFilter === 'all' || w.category === catFilter;
@@ -56,7 +54,7 @@ export function renderWishlist() {
         const pct = w.targetAmount > 0 ? Math.min(100, Math.round((w.savedAmount / w.targetAmount) * 100)) : 0;
         const isConquered = w.conquered;
 
-        const prioClass = w.priority === 'Alta' ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' : (w.priority === 'Média' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
+        const prioClass = w.priority === 'Alta' ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' : (w.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
 
         const catIcons = {
             'Tecnologia': 'fa-laptop',
@@ -79,7 +77,7 @@ export function renderWishlist() {
                         </span>
                         <div class="flex items-center gap-2">
                             <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${prioClass}">${w.priority}</span>
-                            <button onclick="deleteWish('${w.id}')" class="text-gray-500 hover:text-rose-400 text-xs transition"><i class="fa-solid fa-trash"></i></button>
+                            <button onclick="deleteWish('${w.id}')" class="text-gray-500 hover:text-accent-rose text-xs transition"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
 
@@ -117,7 +115,7 @@ export function renderWishlist() {
                         <i class="fa-solid fa-plus text-[10px]"></i> + Economia
                     </button>
                     <div class="flex items-center gap-1.5">
-                        ${w.url ? `<a href="${escapeHtml(w.url)}" target="_blank" class="p-1.5 text-gray-400 hover:text-white bg-dark-bg hover:bg-dark-border rounded-lg border border-dark-border text-xs transition" title="Abrir link do produto"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                        ${w.url ? `<a href="${escapeHtml(w.url)}" target="_blank" class="p-1.5 text-gray-400 hover:text-white bg-dark-bg hover:bg-dark-hover rounded-lg border border-dark-border text-xs transition" title="Abrir link do produto"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
                         <button onclick="toggleWishConquered('${w.id}')" class="p-1.5 ${isConquered ? 'bg-brand-500/20 text-brand-400 border-brand-500/40' : 'bg-dark-bg text-gray-400 hover:text-white'} border border-dark-border rounded-lg text-xs transition" title="${isConquered ? 'Marcar como não conquistado' : 'Marcar como conquistado'}">
                             <i class="fa-solid fa-trophy"></i>
                         </button>

@@ -3,34 +3,18 @@ import { escapeHtml } from '../utils.js';
 
 export let currentTaskView = 'kanban';
 
-// Mapeamento literal de classes acrílicas e saturadas para o scanner do Tailwind CDN
-const PRIORITY_STYLES = {
-    'Alta': 'bg-rose-500/10 text-rose-400 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.1)]',
-    'Média': 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_10px_rgba(245,158,11,0.1)]',
-    'Baixa': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.1)]'
-};
-
-const CATEGORY_STYLES = {
-    'Trabalho': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-    'Estudos': 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-    'Pessoal': 'bg-pink-500/10 text-pink-400 border-pink-500/30',
-    'Finanças': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    'Saúde': 'bg-teal-500/10 text-teal-400 border-teal-500/30',
-    'Geral': 'bg-brand-500/10 text-brand-400 border-brand-500/30'
-};
-
 export function setTaskView(view) {
     currentTaskView = view;
     if (view === 'kanban') {
         document.getElementById('tasks-kanban-view').classList.remove('hidden');
         document.getElementById('tasks-list-view').classList.add('hidden');
-        document.getElementById('btn-view-kanban').className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-500/20 text-brand-400 border border-brand-500/30 shadow-[0_0_12px_rgba(34,197,94,0.15)] transition';
-        document.getElementById('btn-view-list').className = 'px-3 py-1.5 text-xs font-semibold rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition';
+        document.getElementById('btn-view-kanban').className = 'px-2.5 py-1 text-xs font-semibold rounded bg-brand-600 text-white transition';
+        document.getElementById('btn-view-list').className = 'px-2.5 py-1 text-xs font-semibold rounded text-gray-400 hover:text-white transition';
     } else {
         document.getElementById('tasks-kanban-view').classList.add('hidden');
         document.getElementById('tasks-list-view').classList.remove('hidden');
-        document.getElementById('btn-view-list').className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-500/20 text-brand-400 border border-brand-500/30 shadow-[0_0_12px_rgba(34,197,94,0.15)] transition';
-        document.getElementById('btn-view-kanban').className = 'px-3 py-1.5 text-xs font-semibold rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition';
+        document.getElementById('btn-view-list').className = 'px-2.5 py-1 text-xs font-semibold rounded bg-brand-600 text-white transition';
+        document.getElementById('btn-view-kanban').className = 'px-2.5 py-1 text-xs font-semibold rounded text-gray-400 hover:text-white transition';
     }
     renderTasks();
 }
@@ -83,24 +67,22 @@ export function renderTasks() {
         if (listContainer) {
             listContainer.innerHTML = '';
             filtered.forEach(t => {
-                const prioClass = PRIORITY_STYLES[t.priority] || PRIORITY_STYLES['Baixa'];
-                const catClass = CATEGORY_STYLES[t.category] || CATEGORY_STYLES['Geral'];
+                const prioBadge = t.priority === 'Alta' 
+                    ? 'bg-accent-rose/10 text-accent-rose' 
+                    : (t.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber' : 'bg-gray-500/10 text-gray-400');
 
                 listContainer.innerHTML += `
-                    <div class="py-3 px-3 mb-2 flex items-center justify-between text-xs bg-slate-900/40 backdrop-blur-md rounded-xl border border-white/5 hover:border-brand-500/30 transition">
+                    <div class="py-3 flex items-center justify-between text-xs">
                         <div class="flex items-center gap-3">
-                            <input type="checkbox" ${t.status === 'Done' ? 'checked' : ''} onchange="toggleTaskStatus('${t.id}')" class="rounded custom-checkbox w-4 h-4 cursor-pointer accent-brand-500">
+                            <input type="checkbox" ${t.status === 'Done' ? 'checked' : ''} onchange="toggleTaskStatus('${t.id}')" class="rounded custom-checkbox w-4 h-4 cursor-pointer">
                             <div>
-                                <p class="font-bold text-gray-100 ${t.status === 'Done' ? 'line-through text-gray-500' : ''}">${escapeHtml(t.title)}</p>
-                                <div class="flex items-center gap-2 mt-1">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full border ${catClass}">${t.category || 'Geral'}</span>
-                                    <span class="text-[10px] text-gray-400"><i class="fa-regular fa-calendar mr-1"></i>${t.dueDate || 'Sem data'}</span>
-                                </div>
+                                <p class="font-bold text-white ${t.status === 'Done' ? 'line-through text-gray-500' : ''}">${escapeHtml(t.title)}</p>
+                                <p class="text-[10px] text-gray-400">${t.category} • Vencimento: ${t.dueDate}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded-full border text-[10px] font-bold ${prioClass}">${t.priority}</span>
-                            <button onclick="deleteTask('${t.id}')" class="text-gray-500 hover:text-rose-400 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${prioBadge}">${t.priority}</span>
+                            <button onclick="deleteTask('${t.id}')" class="text-gray-500 hover:text-accent-rose p-1"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -111,42 +93,27 @@ export function renderTasks() {
 
 export function createTaskCard(t) {
     const div = document.createElement('div');
-    div.className = 'glass-card p-3.5 rounded-xl space-y-3 border border-white/10 hover:border-brand-500/40 bg-slate-900/50 backdrop-blur-md shadow-lg hover:shadow-[0_0_15px_rgba(34,197,94,0.1)] transition-all cursor-pointer group';
+    div.className = 'glass-card p-3 rounded-xl space-y-2 border border-dark-border hover:border-brand-500/40 transition cursor-pointer';
     
-    const prioBadge = PRIORITY_STYLES[t.priority] || PRIORITY_STYLES['Baixa'];
-    const catBadge = CATEGORY_STYLES[t.category] || CATEGORY_STYLES['Geral'];
+    const prioBadge = t.priority === 'Alta' 
+        ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' 
+        : (t.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
 
     div.innerHTML = `
         <div class="flex items-start justify-between gap-2">
-            <span class="text-xs font-semibold text-gray-100 group-hover:text-white leading-snug transition">${escapeHtml(t.title)}</span>
-            <button onclick="deleteTask('${t.id}')" class="text-gray-500 hover:text-rose-400 text-xs transition opacity-80 group-hover:opacity-100"><i class="fa-solid fa-trash"></i></button>
+            <span class="text-xs font-bold text-white leading-snug">${escapeHtml(t.title)}</span>
+            <button onclick="deleteTask('${t.id}')" class="text-gray-500 hover:text-accent-rose text-xs"><i class="fa-solid fa-trash"></i></button>
         </div>
-        
-        <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="text-[9px] px-2 py-0.5 rounded-full border ${catBadge} font-medium">${t.category || 'Geral'}</span>
-            ${t.dueDate ? `<span class="text-[9px] px-2 py-0.5 rounded-full border border-gray-700 bg-gray-800/50 text-gray-400"><i class="fa-regular fa-clock mr-1"></i>${t.dueDate}</span>` : ''}
-        </div>
-
-        <div class="flex items-center justify-between pt-1 border-t border-white/5">
-            <span class="text-[10px] px-2 py-0.5 rounded-full border ${prioBadge} font-bold">${t.priority}</span>
-            <select onchange="updateTaskStatus('${t.id}', this.value)" class="bg-slate-950/80 text-[10px] text-gray-300 border border-white/10 rounded-lg px-2 py-1 focus:outline-none focus:border-brand-500/50 transition cursor-pointer">
-                <option value="To Do" ${t.status === 'To Do' ? 'selected' : ''}>A Fazer</option>
-                <option value="In Progress" ${t.status === 'In Progress' ? 'selected' : ''}>Em Progresso</option>
-                <option value="Done" ${t.status === 'Done' ? 'selected' : ''}>Concluído</option>
+        <div class="flex items-center justify-between pt-1">
+            <span class="text-[10px] px-2 py-0.5 rounded border ${prioBadge} font-bold">${t.priority}</span>
+            <select onchange="updateTaskStatus('${t.id}', this.value)" class="bg-dark-bg text-[10px] text-gray-300 border border-dark-border rounded px-1.5 py-0.5 focus:outline-none">
+                <option value="To Do" ${t.status === 'To Do' ? 'selected' : ''} class="bg-dark-card text-white">A Fazer</option>
+                <option value="In Progress" ${t.status === 'In Progress' ? 'selected' : ''} class="bg-dark-card text-white">Em Progresso</option>
+                <option value="Done" ${t.status === 'Done' ? 'selected' : ''} class="bg-dark-card text-white">Concluído</option>
             </select>
         </div>
     `;
     return div;
-}
-
-export function updateTaskStatus(id, newStatus) {
-    const state = getState();
-    const task = state.tasks.find(t => t.id === id);
-    if (task) {
-        task.status = newStatus;
-        saveState(state);
-        renderTasks();
-    }
 }
 
 export function toggleTaskStatus(id) {
@@ -154,14 +121,21 @@ export function toggleTaskStatus(id) {
     const task = state.tasks.find(t => t.id === id);
     if (task) {
         task.status = task.status === 'Done' ? 'To Do' : 'Done';
-        saveState(state);
-        renderTasks();
+        saveState();
+    }
+}
+
+export function updateTaskStatus(id, newStatus) {
+    const state = getState();
+    const task = state.tasks.find(t => t.id === id);
+    if (task) {
+        task.status = newStatus;
+        saveState();
     }
 }
 
 export function deleteTask(id) {
     const state = getState();
     state.tasks = state.tasks.filter(t => t.id !== id);
-    saveState(state);
-    renderTasks();
+    saveState();
 }
