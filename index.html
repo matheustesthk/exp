@@ -8,7 +8,7 @@
     <!-- 1. Tailwind CSS CDN carregado PRIMEIRO -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 2. Configuração do Tailwind (Sem objetos conflitantes na raiz de colors) -->
+    <!-- 2. Configuração do Tailwind com a Paleta Exata e Safelist -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -46,7 +46,7 @@
             },
             safelist: [
                 {
-                    pattern: /(bg|text|border|from|to)-(brand|dark|accent)-(50|100|400|500|600|900|bg|card|border|hover|cyan|purple|amber|rose|pink|emerald)(\/(10|20|30|40|50))?/
+                    pattern: /(bg|text|border|from|to)-(brand|dark|accent|rose|amber|cyan|purple|pink|emerald)-(50|100|400|500|600|900|bg|card|border|hover|cyan|purple|amber|rose|pink|emerald)(\/(10|20|30|40|50))?/
                 }
             ]
         };
@@ -66,7 +66,7 @@
     <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <!-- Folha de Estilos Customizada (Única chamada e no final do <head>) -->
+    <!-- Folha de Estilos Customizada (Única chamada no final do <head>) -->
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="h-full flex flex-col md:flex-row min-h-screen bg-dark-bg text-gray-100 selection:bg-brand-500 selection:text-white">
@@ -145,7 +145,7 @@
     <!-- Main Shell -->
     <div class="flex-1 flex flex-col min-w-0 overflow-y-auto pb-24 md:pb-6">
         
-        <!-- Top Navigation Bar Restaurado -->
+        <!-- Top Navigation Bar -->
         <header class="sticky top-0 z-20 glass-card border-b border-dark-border px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white text-lg">
