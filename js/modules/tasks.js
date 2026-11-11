@@ -67,6 +67,10 @@ export function renderTasks() {
         if (listContainer) {
             listContainer.innerHTML = '';
             filtered.forEach(t => {
+                const prioBadge = t.priority === 'Alta' 
+                    ? 'bg-accent-rose/10 text-accent-rose' 
+                    : (t.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber' : 'bg-gray-500/10 text-gray-400');
+
                 listContainer.innerHTML += `
                     <div class="py-3 flex items-center justify-between text-xs">
                         <div class="flex items-center gap-3">
@@ -77,7 +81,7 @@ export function renderTasks() {
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${t.priority === 'Alta' ? 'bg-accent-rose/10 text-accent-rose' : 'bg-accent-amber/10 text-accent-amber'}">${t.priority}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${prioBadge}">${t.priority}</span>
                             <button onclick="deleteTask('${t.id}')" class="text-gray-500 hover:text-accent-rose p-1"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
@@ -91,7 +95,9 @@ export function createTaskCard(t) {
     const div = document.createElement('div');
     div.className = 'glass-card p-3 rounded-xl space-y-2 border border-dark-border hover:border-brand-500/40 transition cursor-pointer';
     
-    const prioBadge = t.priority === 'Alta' ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' : (t.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
+    const prioBadge = t.priority === 'Alta' 
+        ? 'bg-accent-rose/10 text-accent-rose border-accent-rose/20' 
+        : (t.priority === 'Média' ? 'bg-accent-amber/10 text-accent-amber border-accent-amber/20' : 'bg-gray-500/10 text-gray-400 border-gray-500/20');
 
     div.innerHTML = `
         <div class="flex items-start justify-between gap-2">
